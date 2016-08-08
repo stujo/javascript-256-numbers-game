@@ -1,58 +1,28 @@
 describe("GameModel", function() {
-  var GameModel = require('../../lib/GameModel');
-  var gameModel;
+    var GameModel = require('../lib/GameModel');
+    var gameModel;
+    var startingState;
 
-  beforeEach(function() {
-    gameModel = new GameModel();
-    song = new Song();
-  });
-
-  it("should be able to play a Song", function() {
-    gameModel.play(song);
-    expect(gameModel.currentlyPlayingSong).toEqual(song);
-
-    //demonstrates use of custom matcher
-    expect(gameModel).toBePlaying(song);
-  });
-
-  describe("when song has been paused", function() {
     beforeEach(function() {
-      gameModel.play(song);
-      gameModel.pause();
+        gameModel = new GameModel('0000202000000002');
+        startingState = [0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,2];
     });
 
-    it("should indicate that the song is currently paused", function() {
-      expect(gameModel.isPlaying).toBeFalsy();
-
-      // demonstrates use of 'not' with a custom matcher
-      expect(gameModel).not.toBePlaying(song);
+    describe("#toString", function() {
+        it("should return game state as string", function() {
+            expect(gameModel.toString()).toEqual('0000202000000002');
+        });
     });
 
-    it("should be possible to resume", function() {
-      gameModel.resume();
-      expect(gameModel.isPlaying).toBeTruthy();
-      expect(gameModel.currentlyPlayingSong).toEqual(song);
+    describe("#currentState", function() {
+        it("should return game state", function() {
+            expect(gameModel.currentState()).toEqual(startingState);
+        });
     });
-  });
 
-  // demonstrates use of spies to intercept and test method calls
-  it("tells the current song if the user has made it a favorite", function() {
-    spyOn(song, 'persistFavoriteStatus');
-
-    gameModel.play(song);
-    gameModel.makeFavorite();
-
-    expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
-  });
-
-  //demonstrates use of expected exceptions
-  describe("#resume", function() {
-    it("should throw an exception if song is already playing", function() {
-      gameModel.play(song);
-
-      expect(function() {
-        gameModel.resume();
-      }).toThrowError("song is already playing");
+    describe("#getRows", function() {
+        it("should return 4 rows", function() {
+            expect(gameModel.getRowsFromState(startingState)).toEqual([[0,0,0,0],[2,0,2,0],[0,0,0,0],[0,0,0,2]]);
+        });
     });
-  });
 });
