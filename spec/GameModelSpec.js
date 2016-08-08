@@ -67,6 +67,28 @@ describe("GameModel", function() {
 
     });
 
+    describe("#columnsToState", function(){
+           it("join columns", function() {
+            expect(gameModel.columnsToState([
+                [2, 0, 0, 4],
+                [2, 0, 0, 0],
+                [0, 4, 0, 0],
+                [0, 0, 0, 2]
+            ])).toEqual([2,2,0,0,0,0,4,0,0,0,0,0,4,0,0,2 ]);
+        }); 
+    });
+
+    describe("#rowsToState", function(){
+           it("join rows", function() {
+            expect(gameModel.rowsToState([
+                [2, 0, 0, 4],
+                [2, 0, 0, 0],
+                [0, 4, 0, 0],
+                [0, 0, 0, 2]
+            ])).toEqual([2,0,0,4,2,0,0,0,0,4,0,0,0,0,0,2 ]);
+        }); 
+    });
+
 
     describe("#left_impl", function() {
         it("should combine 8008", function() {
