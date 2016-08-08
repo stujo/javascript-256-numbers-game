@@ -42,7 +42,7 @@ describe("GameModel", function() {
         });
     });
 
-    
+
 
     describe("#consolidateSet", function() {
         it("should return blank row", function() {
@@ -67,26 +67,26 @@ describe("GameModel", function() {
 
     });
 
-    describe("#columnsToState", function(){
-           it("join columns", function() {
+    describe("#columnsToState", function() {
+        it("join columns", function() {
             expect(gameModel.columnsToState([
                 [2, 0, 0, 4],
                 [2, 0, 0, 0],
                 [0, 4, 0, 0],
                 [0, 0, 0, 2]
-            ])).toEqual([2,2,0,0,0,0,4,0,0,0,0,0,4,0,0,2 ]);
-        }); 
+            ])).toEqual([2, 2, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 4, 0, 0, 2]);
+        });
     });
 
-    describe("#rowsToState", function(){
-           it("join rows", function() {
+    describe("#rowsToState", function() {
+        it("join rows", function() {
             expect(gameModel.rowsToState([
                 [2, 0, 0, 4],
                 [2, 0, 0, 0],
                 [0, 4, 0, 0],
                 [0, 0, 0, 2]
-            ])).toEqual([2,0,0,4,2,0,0,0,0,4,0,0,0,0,0,2 ]);
-        }); 
+            ])).toEqual([2, 0, 0, 4, 2, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 2]);
+        });
     });
 
 
@@ -129,6 +129,25 @@ describe("GameModel", function() {
                 0, 0, 0, 0,
                 0, 0, 0, 0,
                 2, 0, 2, 2
+            ]);
+        });
+    });
+
+    describe('#boardsEqual', function(){
+        it("should return true", function() {
+            expect(gameModel.boardsEqual(startingState, startingState.slice(0))).toEqual(true);
+        });
+        it("should return false", function() {
+            var altered = startingState.slice(0);
+            altered[altered.length - 1] = altered[altered.length - 1] + 1;
+            expect(gameModel.boardsEqual(startingState, altered)).toEqual(false);
+        });
+    });
+
+    describe("#spawnLocation ", function() {
+        it("should only pick empty locations", function() {
+            expect(gameModel.spawnLocation([6,7,80])).toBeAnyOf([
+                80,7,6
             ]);
         });
     });
