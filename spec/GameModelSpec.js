@@ -5,7 +5,7 @@ describe("GameModel", function() {
 
     beforeEach(function() {
         gameModel = new GameModel('0000202000000002');
-        startingState = [0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,2];
+        startingState = [0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2];
     });
 
     describe("#toString", function() {
@@ -20,9 +20,74 @@ describe("GameModel", function() {
         });
     });
 
-    describe("#getRows", function() {
+    describe("#getRowsFromState", function() {
         it("should return 4 rows", function() {
-            expect(gameModel.getRowsFromState(startingState)).toEqual([[0,0,0,0],[2,0,2,0],[0,0,0,0],[0,0,0,2]]);
+            expect(gameModel.getRowsFromState(startingState)).toEqual([
+                [0, 0, 0, 0],
+                [2, 0, 2, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 2]
+            ]);
         });
     });
+
+    describe("#getColumnsFromState", function() {
+        it("should return 4 columns", function() {
+            expect(gameModel.getColumnsFromState(startingState)).toEqual([
+                [0, 2, 0, 0],
+                [0, 0, 0, 0],
+                [0, 2, 0, 0],
+                [0, 0, 0, 2]
+            ]);
+        });
+    });
+
+    
+
+    describe("#consolidateSet", function() {
+        it("should return blank row", function() {
+            expect(gameModel.consolidateSet([0, 0, 0, 0])).toEqual([0, 0, 0, 0]);
+        });
+
+        it("should move zeros to end", function() {
+            expect(gameModel.consolidateSet([2, 0, 0, 4])).toEqual([2, 4, 0, 0]);
+        });
+
+        it("should combine twos to a four", function() {
+            expect(gameModel.consolidateSet([2, 0, 2, 0])).toEqual([4, 0, 0, 0]);
+        });
+
+        it("should not combine 2420", function() {
+            expect(gameModel.consolidateSet([2, 4, 2, 0])).toEqual([2, 4, 2, 0]);
+        });
+
+        it("should combine 8008", function() {
+            expect(gameModel.consolidateSet([8, 0, 0, 8])).toEqual([16, 0, 0, 0]);
+        });
+
+    });
+
+
+    describe("#left_impl", function() {
+        it("should combine 8008", function() {
+            expect(gameModel.left_impl(startingState)).toEqual([
+                0, 0, 0, 0,
+                4, 0, 0, 0,
+                0, 0, 0, 0,
+                2, 0, 0, 0
+            ]);
+        });
+    });
+    describe("#up_impl", function() {
+        it("should move 2's to top row", function() {
+            expect(gameModel.up_impl(startingState)).toEqual([
+                2, 0, 2, 2,
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                0, 0, 0, 0
+            ]);
+        });
+    });
+
+
 });
