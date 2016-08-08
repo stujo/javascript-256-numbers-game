@@ -43,53 +43,53 @@ header .title {
 	padding: 10px;
 }
 
-.notes {
-	margin: 5px;
+
+#game td{
+  width: 3em;
+  height: 3em;
+  min-width: 3em;
+  min-height: 3em;
+  max-width: 3em;
+  max-height: 3em;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: center;
+  border: 1px solid #333;
 }
 
-
-.example-container{
-	border: 2px solid #DDD;
-	min-height: 150px;
-	background-color: #EEE;
-	position: relative;
+.value-0 {
+  background-color: #fff;
 }
 
-.example{
-	width: 200px;
-	height: 35px;
-	border: 1px solid #333;
-	background-color: #CFC;
-	text-align: center;
-	font-size: 0.7em;
-	right: 10px; 
-	top: 20px;
-	padding: 45px 0 0 0;
+.value-2 {
+  background-color: #fdd;
 }
 
-
-@media only screen and (max-width: 500px) {
-  
-.content-container{
-  width: 100%;
-  margin: 1em auto 0px auto;
+.value-4 {
+  background-color: #fbb;
 }
 
-.article{
-  width: 100%;
-  margin: 2px auto;
-  padding: 5px;
+.value-8 {
+  background-color: #f99;
 }
 
-
-.fixed-top{
-   height: 1.5em;
+.value-16 {
+  background-color: #f77;
 }
 
-header .title {
-   font-size: 1.25em;
-   line-height: 1.25em;
+.value-32 {
+  background-color: #f55;
 }
 
+.value-64 {
+  background-color: #f33;
+}
+
+.value-128 {
+  background-color: #f11;
+}
+
+.value-256 {
+  background-color: #f00;
 }
 
