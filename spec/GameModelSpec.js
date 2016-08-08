@@ -91,7 +91,7 @@ describe("GameModel", function() {
 
 
     describe("#left_impl", function() {
-        it("should combine 8008", function() {
+        it("should combine the 4s to the left", function() {
             expect(gameModel.left_impl(startingState)).toEqual([
                 0, 0, 0, 0,
                 4, 0, 0, 0,
@@ -100,6 +100,18 @@ describe("GameModel", function() {
             ]);
         });
     });
+
+    describe("#right_impl", function() {
+        it("should combine the 4's to the right", function() {
+            expect(gameModel.right_impl(startingState)).toEqual([
+                0, 0, 0, 0,
+                0, 0, 0, 4,
+                0, 0, 0, 0,
+                0, 0, 0, 2
+            ]);
+        });
+    });
+
     describe("#up_impl", function() {
         it("should move 2's to top row", function() {
             expect(gameModel.up_impl(startingState)).toEqual([
@@ -107,6 +119,16 @@ describe("GameModel", function() {
                 0, 0, 0, 0,
                 0, 0, 0, 0,
                 0, 0, 0, 0
+            ]);
+        });
+    });
+    describe("#down_impl", function() {
+        it("should move 2's to top row", function() {
+            expect(gameModel.down_impl(startingState)).toEqual([
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                2, 0, 2, 2
             ]);
         });
     });
