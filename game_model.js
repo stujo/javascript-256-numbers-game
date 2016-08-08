@@ -59,13 +59,25 @@ GameModel.prototype.random = function() {
 
 
 GameModel.prototype.left_impl = function(game_state) {
-    var state = game_state.slice(0);
+    var consolidatedRows = [];
+
+    var rows = this.getRowsFromState(game_state);
+
+    rows.forEach(function(row){
+      consolidatedRows.push(this.consolidate(row))
+    });
+
+    var state = consolidatedRows.reduce(function(memo, row){
+       return memo.concat(row);
+    }, []);
 
     return state;
 }
 
 GameModel.prototype.right_impl = function(game_state) {
     var state = game_state.slice(0);
+
+    var rows = this.getRowsFromState(state);
 
     return state;
 }
