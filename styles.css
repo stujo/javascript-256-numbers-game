@@ -1,0 +1,95 @@
+/** {
+	outline: 1px solid red;
+}
+*/
+html, body{
+	padding: 0;
+	margin: 0;
+	font-family: sans-serif;
+}
+
+h1,h2,h3 {
+	margin-top: 0;
+	padding-bottom: 0.5em;
+	margin-bottom: 0.5em;
+	border-bottom: 1px solid #888;
+}
+
+.fixed-top{
+   top: 0;
+   left: 0;
+   right: 0;
+   position: fixed;
+   height: 3em;
+   background-color: #EEB;
+   opacity: 0.95;
+   z-index: 1;
+}
+
+header .title {
+   font-size: 2em;
+   line-height: 1.5em;
+}
+
+
+.content-container{
+	width: 80%;
+  margin: 3em auto 0px auto;
+}
+
+.article{
+	width: 80%;
+	margin: 5px auto;
+	padding: 10px;
+}
+
+.notes {
+	margin: 5px;
+}
+
+
+.example-container{
+	border: 2px solid #DDD;
+	min-height: 150px;
+	background-color: #EEE;
+	position: relative;
+}
+
+.example{
+	width: 200px;
+	height: 35px;
+	border: 1px solid #333;
+	background-color: #CFC;
+	text-align: center;
+	font-size: 0.7em;
+	right: 10px; 
+	top: 20px;
+	padding: 45px 0 0 0;
+}
+
+
+@media only screen and (max-width: 500px) {
+  
+.content-container{
+  width: 100%;
+  margin: 1em auto 0px auto;
+}
+
+.article{
+  width: 100%;
+  margin: 2px auto;
+  padding: 5px;
+}
+
+
+.fixed-top{
+   height: 1.5em;
+}
+
+header .title {
+   font-size: 1.25em;
+   line-height: 1.25em;
+}
+
+}
+
