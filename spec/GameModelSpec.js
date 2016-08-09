@@ -37,9 +37,9 @@ describe("GameModel", function() {
         });
     });
 
-    describe("#getRowsFromState", function() {
+    describe("#_getRowsFromState", function() {
         it("should return 4 rows", function() {
-            expect(gameModel.getRowsFromState(startingState)).toEqual([
+            expect(gameModel._getRowsFromState(startingState)).toEqual([
                 [0, 0, 0, 0],
                 [2, 0, 2, 0],
                 [0, 0, 0, 0],
@@ -48,9 +48,9 @@ describe("GameModel", function() {
         });
     });
 
-    describe("#getColumnsFromState", function() {
+    describe("#_getColumnsFromState", function() {
         it("should return 4 columns", function() {
-            expect(gameModel.getColumnsFromState(startingState)).toEqual([
+            expect(gameModel._getColumnsFromState(startingState)).toEqual([
                 [0, 2, 0, 0],
                 [0, 0, 0, 0],
                 [0, 2, 0, 0],
@@ -61,32 +61,32 @@ describe("GameModel", function() {
 
 
 
-    describe("#consolidateSet", function() {
+    describe("#_consolidateSet", function() {
         it("should return blank row", function() {
-            expect(gameModel.consolidateSet([0, 0, 0, 0])).toEqual([0, 0, 0, 0]);
+            expect(gameModel._consolidateSet([0, 0, 0, 0])).toEqual([0, 0, 0, 0]);
         });
 
         it("should move zeros to end", function() {
-            expect(gameModel.consolidateSet([2, 0, 0, 4])).toEqual([2, 4, 0, 0]);
+            expect(gameModel._consolidateSet([2, 0, 0, 4])).toEqual([2, 4, 0, 0]);
         });
 
         it("should combine twos to a four", function() {
-            expect(gameModel.consolidateSet([2, 0, 2, 0])).toEqual([4, 0, 0, 0]);
+            expect(gameModel._consolidateSet([2, 0, 2, 0])).toEqual([4, 0, 0, 0]);
         });
 
         it("should not combine 2420", function() {
-            expect(gameModel.consolidateSet([2, 4, 2, 0])).toEqual([2, 4, 2, 0]);
+            expect(gameModel._consolidateSet([2, 4, 2, 0])).toEqual([2, 4, 2, 0]);
         });
 
         it("should combine 8008", function() {
-            expect(gameModel.consolidateSet([8, 0, 0, 8])).toEqual([16, 0, 0, 0]);
+            expect(gameModel._consolidateSet([8, 0, 0, 8])).toEqual([16, 0, 0, 0]);
         });
 
     });
 
-    describe("#columnsToState", function() {
+    describe("#_columnsToState", function() {
         it("join columns", function() {
-            expect(gameModel.columnsToState([
+            expect(gameModel._columnsToState([
                 [2, 0, 0, 4],
                 [2, 0, 0, 0],
                 [0, 4, 0, 0],
@@ -95,9 +95,9 @@ describe("GameModel", function() {
         });
     });
 
-    describe("#rowsToState", function() {
+    describe("#_rowsToState", function() {
         it("join rows", function() {
-            expect(gameModel.rowsToState([
+            expect(gameModel._rowsToState([
                 [2, 0, 0, 4],
                 [2, 0, 0, 0],
                 [0, 4, 0, 0],
@@ -107,9 +107,9 @@ describe("GameModel", function() {
     });
 
 
-    describe("#left_impl", function() {
+    describe("#_left_impl", function() {
         it("should combine the 4s to the left", function() {
-            expect(gameModel.left_impl(startingState)).toEqual([
+            expect(gameModel._left_impl(startingState)).toEqual([
                 0, 0, 0, 0,
                 4, 0, 0, 0,
                 0, 0, 0, 0,
@@ -118,9 +118,9 @@ describe("GameModel", function() {
         });
     });
 
-    describe("#right_impl", function() {
+    describe("#_right_impl", function() {
         it("should combine the 4's to the right", function() {
-            expect(gameModel.right_impl(startingState)).toEqual([
+            expect(gameModel._right_impl(startingState)).toEqual([
                 0, 0, 0, 0,
                 0, 0, 0, 4,
                 0, 0, 0, 0,
@@ -129,9 +129,9 @@ describe("GameModel", function() {
         });
     });
 
-    describe("#up_impl", function() {
+    describe("#_up_impl", function() {
         it("should move 2's to top row", function() {
-            expect(gameModel.up_impl(startingState)).toEqual([
+            expect(gameModel._up_impl(startingState)).toEqual([
                 2, 0, 2, 2,
                 0, 0, 0, 0,
                 0, 0, 0, 0,
@@ -139,9 +139,9 @@ describe("GameModel", function() {
             ]);
         });
     });
-    describe("#down_impl", function() {
+    describe("#_down_impl", function() {
         it("should move 2's to top row", function() {
-            expect(gameModel.down_impl(startingState)).toEqual([
+            expect(gameModel._down_impl(startingState)).toEqual([
                 0, 0, 0, 0,
                 0, 0, 0, 0,
                 0, 0, 0, 0,
@@ -150,20 +150,20 @@ describe("GameModel", function() {
         });
     });
 
-    describe('#boardsEqual', function(){
+    describe('#_boardsEqual', function(){
         it("should return true", function() {
-            expect(gameModel.boardsEqual(startingState, startingState.slice(0))).toEqual(true);
+            expect(gameModel._boardsEqual(startingState, startingState.slice(0))).toEqual(true);
         });
         it("should return false", function() {
             var altered = startingState.slice(0);
             altered[altered.length - 1] = altered[altered.length - 1] + 1;
-            expect(gameModel.boardsEqual(startingState, altered)).toEqual(false);
+            expect(gameModel._boardsEqual(startingState, altered)).toEqual(false);
         });
     });
 
-    describe("#spawnLocation ", function() {
+    describe("#_spawnLocation ", function() {
         it("should only pick empty locations", function() {
-            expect(gameModel.spawnLocation([6,7,80])).toBeAnyOf([
+            expect(gameModel._spawnLocation([6,7,80])).toBeAnyOf([
                 80,7,6
             ]);
         });
