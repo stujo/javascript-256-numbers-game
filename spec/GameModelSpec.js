@@ -20,6 +20,23 @@ describe("GameModel", function() {
         });
     });
 
+    describe("#currentDetails", function() {
+        it("should include last move", function() {
+            gameModel.left();
+            expect(gameModel.currentDetails().move).toEqual('left');
+        });
+        it("should include board state", function() {
+            expect(gameModel.currentDetails().board).toEqual(startingState);
+        });
+        it("should include finished state", function() {
+            gameModel.right();
+            expect(gameModel.currentDetails().finished).toEqual(false);
+        });
+        it("should include score", function() {
+            expect(gameModel.currentDetails().score).toEqual(6);
+        });
+    });
+
     describe("#getRowsFromState", function() {
         it("should return 4 rows", function() {
             expect(gameModel.getRowsFromState(startingState)).toEqual([
