@@ -161,6 +161,15 @@ describe("GameModel", function() {
         });
     });
 
+    describe("#_finished", function() {
+       it("should detect jammed board", function(){
+          expect(gameModel._finished([2,16,2,4,32,8,32,16,4,64,16,4,2,8,4,2])).toEqual(true)
+       })
+      it("should detect playable board", function(){
+          expect(gameModel._finished([2,16,2,4,32,8,32,16,4,64,16,4,2,8,2,2])).toEqual(false)
+       })
+    });
+
     describe("#_spawnLocation ", function() {
         it("should only pick empty locations", function() {
             expect(gameModel._spawnLocation([6,7,80])).toBeAnyOf([
