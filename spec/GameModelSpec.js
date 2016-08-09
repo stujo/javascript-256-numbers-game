@@ -82,6 +82,10 @@ describe("GameModel", function() {
             expect(gameModel._consolidateSet([8, 0, 0, 8])).toEqual([16, 0, 0, 0]);
         });
 
+        it("should combine 8008", function() {
+            expect(gameModel._consolidateSet([8,8,16,32])).toEqual([16,16,32,0]);
+        });
+
     });
 
     describe("#_columnsToState", function() {
@@ -127,6 +131,17 @@ describe("GameModel", function() {
                 0, 0, 0, 2
             ]);
         });
+
+        it("should combine the 4's to the right", function() {
+            expect(gameModel._right_impl( [32,16,8,8, 8,4,0,0, 4,0,0,0, 0,0,0,0])).toEqual([
+                0, 32, 16, 16,
+                0, 0, 8, 4,
+                0, 0, 0, 4,
+                0, 0, 0, 0
+            ]);
+        });
+
+       
     });
 
     describe("#_up_impl", function() {
