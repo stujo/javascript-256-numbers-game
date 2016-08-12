@@ -56,6 +56,7 @@ header {
 #game table{
   text-align: center;
   margin: 1em auto;
+  position: relative;
 }
 
 
@@ -117,4 +118,44 @@ header {
   overflow-y: scroll;
 }
 
+.slider {
+  position: absolute;
+  z-index: 1;
+  background-color: #4ee;
+  padding: 1px;
+  display: table-cell;
+  vertical-align: center;
+  text-align: center;
+
+  width: 3em;
+  height: 3em;
+  min-width: 3em;
+  min-height: 3em;
+  max-width: 3em;
+  max-height: 3em;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: center;
+  border: 1px solid #333;
+}
+
+.spawned {
+  animation-duration: 0.5s;
+  animation-name: bobble;
+}
+
+@keyframes bobble {
+  from {
+    font-size: 1em;
+  }
+
+  75% {
+    font-size: 3em;
+  }
+
+  to {
+    font-size: 2em;
+  }
+}  
+}
 
